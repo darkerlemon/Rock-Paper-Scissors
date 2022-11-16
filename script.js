@@ -15,6 +15,7 @@ const container = document.querySelector('div');
 
 
 
+
 function game(){
 const gameArray = ['rock', 'paper', 'scissors'];
 
@@ -77,18 +78,27 @@ paraScore.textContent = `You: ${playerScore}, Computer: ${computerScore}`;
 
 if (computerScore > playerScore && computerScore == 5) {
    paraLead.textContent = 'Computer Won :( Better Luck Next Time!!';
+   paraLead.style.backgroundColor = 'red';
+   paraLead.style.color = 'white';
 } else if (playerScore > computerScore && playerScore == 5) {
-  paraLead.textContent = 'YOU WON! CONGRATULATIONS!!'
+   paraLead.textContent = 'YOU WON! CONGRATULATIONS!!';
+   paraLead.style.backgroundColor = 'green';
+   paraLead.style.color = 'white';
 } else if (computerScore > playerScore) {
-    paraLead.textContent = 'Computer is on the lead :(';
+   paraLead.textContent = 'Computer is on the lead :(';
 } else if (playerScore > computerScore) {
-    paraLead.textContent = 'You are on the lead!';
+   paraLead.textContent = 'You are on the lead!';
 } else if (playerScore == computerScore) {
-    paraLead.textContent = 'It is a TIE!';
+   paraLead.textContent = 'It is a TIE!';
 } else {alert('something is wrong')};
 
-
-
+if (paraLead.textContent == 'Computer Won :( Better Luck Next Time!!' || paraLead.textContent == 'YOU WON! CONGRATULATIONS!!'){
+ if (container.hasChildNodes()) {
+   container.removeChild(container.children[0]);
+   container.removeChild(container.children[0]);
+   container.removeChild(container.children[0]);
+};
+setTimeout(() => {if (confirm('Want to play again?')) {window.location.reload()};}, 5000);}
 
 };
 let playerChoice = '';
@@ -103,8 +113,5 @@ buttons.forEach((button) => {
       } else console.log('error');
    game();
    });
-   });
-
-
-
+   })
 
