@@ -2,10 +2,23 @@ let playerScore = 0;
 let computerScore = 0;
 
 
+
+
+const buttons = document.querySelectorAll('button');
+const rock = document.getElementById('rock'); 
+const paper = document.getElementById('paper'); 
+const scissors = document.getElementById('scissors'); 
+
+
+
+
+
+
+
+
 function game(){
 const gameArray = ['rock', 'paper', 'scissors'];
 
-for (let i = 0; i < 5; i++) {
 
 function oneRound(playerChoice, computerFinalChoice) {
 
@@ -44,22 +57,37 @@ function getComputerChoice () {
 } 
  
 const computerFinalChoice = getComputerChoice();
-const playerChoice = prompt('rock, paper or scissors?').toLowerCase();
+
 
 
 console.log(`player: ${playerChoice}`);
 console.log(`computer: ${computerFinalChoice}`);
 oneRound(playerChoice, computerFinalChoice);
 console.log(`You: ${playerScore}, Computer: ${computerScore}`);
-}
+
+
 if (computerScore > playerScore) {
-    console.log('Computer have WON!');
+    console.log('Computer is on the lead :(');
 } else if (playerScore > computerScore) {
-    console.log('YOU HAVE WON!!');
+    console.log('You are on the lead!');
 } else {console.log('It is a TIE!')};
 
 
 };
-game();
+let playerChoice = '';
+buttons.forEach((button) => {
+   button.addEventListener('click', function (e) {
+      if (e.target == rock) {
+         playerChoice = 'rock';
+      } else if (e.target == paper) {
+         playerChoice = 'paper';
+      } else if (e.target == scissors) {
+         playerChoice = 'scissors';
+      } else console.log('error');
+   game();
+   });
+   });
+
+
 
 
