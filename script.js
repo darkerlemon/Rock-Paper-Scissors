@@ -8,8 +8,7 @@ const buttons = document.querySelectorAll('button');
 const rock = document.getElementById('rock'); 
 const paper = document.getElementById('paper'); 
 const scissors = document.getElementById('scissors'); 
-
-
+const container = document.querySelector('div');
 
 
 
@@ -22,29 +21,30 @@ const gameArray = ['rock', 'paper', 'scissors'];
 
 function oneRound(playerChoice, computerFinalChoice) {
 
+
 if (playerChoice === 'rock' && computerFinalChoice === 'paper') {  
-    console.log('Paper beats Rock, you LOSE!');
+    paraResult.textContent = 'Paper beats Rock, you LOSE!';
     return computerScore++;
 } else if (playerChoice === 'rock' && computerFinalChoice === 'scissors') {
-    console.log('Rock beats Scissors, you WIN!'); 
+   paraResult.textContent = 'Rock beats Scissors, you WIN!'; 
     return playerScore++;
 } else if (playerChoice === 'rock' && computerFinalChoice === 'rock') {
-   console.log('It\'s a draw!');
+   paraResult.textContent = 'It\'s a draw!';
 } else if (playerChoice === 'paper' && computerFinalChoice === 'paper') {
-   console.log('It\'s a draw!');
+   paraResult.textContent = 'It\'s a draw!';
 } else if (playerChoice === 'paper' && computerFinalChoice === 'scissors') {
-   console.log('Scissors beats Paper, you LOSE!');
+   paraResult.textContent = 'Scissors beats Paper, you LOSE!';
    return computerScore++;
 } else if (playerChoice === 'paper' && computerFinalChoice === 'rock') {
-   console.log('Paper beats Rock, you WIN!');
+   paraResult.textContent = 'Paper beats Rock, you WIN!';
    return playerScore++;
 } else if (playerChoice === 'scissors' && computerFinalChoice === 'paper') {
-   console.log('Scissors beats Paper, you WIN!');
+   paraResult.textContent = 'Scissors beats Paper, you WIN!';
    return playerScore++;
 } else if (playerChoice === 'scissors' && computerFinalChoice === 'scissors') {
-   console.log('It\'s a draw!');
+   paraResult.textContent = 'It\'s a draw!';
 } else if (playerChoice === 'scissors' && computerFinalChoice === 'rock') {
-   console.log('Rock beats Scissors, you LOSE!');
+   paraResult.textContent = 'Rock beats Scissors, you LOSE!';
    return computerScore++;
    } else {console.log('something is wrong');};
 }
@@ -58,6 +58,10 @@ function getComputerChoice () {
  
 const computerFinalChoice = getComputerChoice();
 
+const paraChoice = document.getElementById('paraChoice');
+const paraResult = document.getElementById('paraResult');
+const paraScore = document.getElementById('paraScore');
+const paraLead = document.getElementById('paraLead');
 
 
 console.log(`player: ${playerChoice}`);
@@ -65,12 +69,25 @@ console.log(`computer: ${computerFinalChoice}`);
 oneRound(playerChoice, computerFinalChoice);
 console.log(`You: ${playerScore}, Computer: ${computerScore}`);
 
+paraChoice.textContent = `Your choice: ${playerChoice}, Computer choice: ${computerFinalChoice}`;
+paraScore.textContent = `You: ${playerScore}, Computer: ${computerScore}`;
 
-if (computerScore > playerScore) {
-    console.log('Computer is on the lead :(');
+
+
+
+if (computerScore > playerScore && computerScore == 5) {
+   paraLead.textContent = 'Computer Won :( Better Luck Next Time!!';
+} else if (playerScore > computerScore && playerScore == 5) {
+  paraLead.textContent = 'YOU WON! CONGRATULATIONS!!'
+} else if (computerScore > playerScore) {
+    paraLead.textContent = 'Computer is on the lead :(';
 } else if (playerScore > computerScore) {
-    console.log('You are on the lead!');
-} else {console.log('It is a TIE!')};
+    paraLead.textContent = 'You are on the lead!';
+} else if (playerScore == computerScore) {
+    paraLead.textContent = 'It is a TIE!';
+} else {alert('something is wrong')};
+
+
 
 
 };
